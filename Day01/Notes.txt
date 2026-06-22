@@ -1,0 +1,39 @@
+Production (Prod)
+
+This is the live environment used by actual customers.
+
+Example
+
+An e-commerce website:
+
+www.company.com
+
+Customers:
+
+Browse products
+Place orders
+Make payments
+
+Non-Production (Non-Prod)
+
+Non-Prod contains environments used before deployment to Production.
+Purpose
+To validate changes before customers see them.
+Usually includes:
+
+Dev
+Test
+QA
+UAT
+
+Sandbox
+
+A Sandbox is an isolated environment for experimentation.
+Purpose
+To safely learn, test, and try things without affecting anyone.
+Example Activities
+Learning Terraform
+Testing AKS upgrades
+Trying new Azure services
+POC (Proof of Concept)
+Experimenting with architectures
