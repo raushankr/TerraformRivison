@@ -5,8 +5,8 @@ resource "azurerm_linux_virtual_machine" "tf-vm" {
   location            = each.value.location
   size                = each.value.sku_size
   disable_password_authentication = false
-  admin_username      = each.value.username
-  admin_password =  each.value.password
+  admin_username      = data.azurerm_key_vault_secret.tf-kvsecret[each.key].secret_value
+  admin_password =   data.azurerm_key_vault_secret.tf-kvsecret[each.key].secret_value2
 
   network_interface_ids = [
     data.azurerm_network_interface.tf-nic[each.key].id,

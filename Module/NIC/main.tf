@@ -1,8 +1,8 @@
 resource "azurerm_network_interface" "tf-nic" {
   for_each            = var.nic
   name                = each.value.nic_name
-  location            = each.value.location
-  resource_group_name = each.value.rg_name
+  location            = var.location
+  resource_group_name = var.rg_name
 
   dynamic "ip_configuration" {
     for_each = each.value.ip_configuration
