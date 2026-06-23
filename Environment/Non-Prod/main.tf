@@ -56,3 +56,10 @@ module "kv" {
   rg_name = var.rg_name
   location = var.location
 }
+
+module "lb" {
+  source = "../../Module/LB"
+  lbs = var.lb
+  rg_name = var.rg_name
+  location = var.location
+}

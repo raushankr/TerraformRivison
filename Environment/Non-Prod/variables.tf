@@ -64,12 +64,12 @@ variable "nsg" {
 variable "vm" {
   description = "variable of vms"
   type = map(object({
-    vm_name = string
-    rg_name = string
-    location = string
-    sku_size = string
-    nic_name = string
-    kv_name = string
+    vm_name      = string
+    rg_name      = string
+    location     = string
+    sku_size     = string
+    nic_name     = string
+    kv_name      = string
     secret_name1 = string
     secret_name2 = string
   }))
@@ -92,7 +92,7 @@ variable "bastion" {
     rg_name      = string
     pip_name     = string
     subnet_name  = string
-    vnet_name = string
+    vnet_name    = string
     ip_config = map(object({
       ip_name = string
     }))
@@ -101,11 +101,26 @@ variable "bastion" {
 
 
 variable "kv" {
-    type = map(object({
-    secret_value = string
-    secret_name = string
-    kv_name = string
+  type = map(object({
+    secret_value  = string
+    secret_name   = string
+    kv_name       = string
     secret_value2 = string
-    secret_name2 = string
+    secret_name2  = string
+  }))
+}
+
+
+variable "lb" {
+  description = "variable for load balancer"
+  type = map(object({
+    lb_name  = string
+    pip_name = string
+    fip = map(object({
+      fip_name = string
+    }))
+    backend_pool_name = string
+    fip_name          = string
+    lbprobe_name      = string
   }))
 }

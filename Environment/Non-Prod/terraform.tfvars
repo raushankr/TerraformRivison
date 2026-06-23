@@ -30,12 +30,29 @@ subnet = {
     rg_name        = "np-terraform-rg"
     address_prefix = ["10.0.224.0/24"]
   }
+    subnet3 = {
+    vnet_name      = "np-tfvnet"
+    subnet_name    = "np-appsubnet"
+    rg_name        = "np-terraform-rg"
+    address_prefix = ["10.0.2.0/24"]
+  }
 }
 
 nicc = {
   nicc1 = {
     nic_name    = "np-tfnic"
     subnet_name = "np-tfsubnet"
+    vnet_name   = "np-tfvnet"
+    ip_configuration = {
+      ip_config1 = {
+        ip_name            = "internal"
+        private_ip_address = "Dynamic"
+      }
+    }
+  }
+    nicc2 = {
+    nic_name    = "np-tfnic2"
+    subnet_name = "np-appsubnet"
     vnet_name   = "np-tfvnet"
     ip_configuration = {
       ip_config1 = {
@@ -54,6 +71,13 @@ nsg = {
     subnet_name = "np-tfsubnet"
     vnet_name   = "np-tfvnet"
   }
+  nsg2 = {
+    nsg_name    = "np-tfnsg2"
+    location    = "central india"
+    rg_name     = "np-terraform-rg"
+    subnet_name = "np-appsubnet"
+    vnet_name   = "np-tfvnet"
+  }
 }
 
 vm = {
@@ -67,11 +91,26 @@ vm = {
      secret_name1 = "username"
      secret_name2 = "password"
   }
+  vm2 = {
+    vm_name  = "np-appvm"
+    location = "central india"
+    rg_name  = "np-terraform-rg"
+    sku_size = "Standard_B1s"
+    nic_name = "np-tfnic2"
+     kv_name = "specifickv011"
+     secret_name1 = "username"
+     secret_name2 = "password"
+  }
 }
 
 pip = {
   "pip1" = {
     pip_name = "np-pip1"
+    location = "central india"
+    rg_name  = "np-terraform-rg"
+  }
+    "pip2" = {
+    pip_name = "np-lbpip2"
     location = "central india"
     rg_name  = "np-terraform-rg"
   }
@@ -104,3 +143,17 @@ kv = {
   }
 }
 
+lb = {
+  lb1 = {
+    lb_name = "public_lb"
+    pip_name = "np-lbpip2"
+    fip = {
+      fip1 = {
+        fip_name = "PublicIPAddress"
+      }
+    }
+    backend_pool_name = "public_lb_pool"
+    fip_name = "PublicIPAddress"
+    lbprobe_name = "public_lb_probe"
+  }
+}
