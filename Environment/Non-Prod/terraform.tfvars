@@ -30,7 +30,7 @@ subnet = {
     rg_name        = "np-terraform-rg"
     address_prefix = ["10.0.224.0/24"]
   }
-    subnet3 = {
+  subnet3 = {
     vnet_name      = "np-tfvnet"
     subnet_name    = "np-appsubnet"
     rg_name        = "np-terraform-rg"
@@ -50,7 +50,7 @@ nicc = {
       }
     }
   }
-    nicc2 = {
+  nicc2 = {
     nic_name    = "np-tfnic2"
     subnet_name = "np-appsubnet"
     vnet_name   = "np-tfvnet"
@@ -82,24 +82,24 @@ nsg = {
 
 vm = {
   vm1 = {
-    vm_name  = "np-tfvm"
-    location = "central india"
-    rg_name  = "np-terraform-rg"
-    sku_size = "Standard_B1s"
-    nic_name = "np-tfnic"
-     kv_name = "specifickv011"
-     secret_name1 = "username"
-     secret_name2 = "password"
+    vm_name      = "np-tfvm"
+    location     = "central india"
+    rg_name      = "np-terraform-rg"
+    sku_size     = "Standard_B1s"
+    nic_name     = "np-tfnic"
+    kv_name      = "specifickv011"
+    secret_name1 = "username"
+    secret_name2 = "password"
   }
   vm2 = {
-    vm_name  = "np-appvm"
-    location = "central india"
-    rg_name  = "np-terraform-rg"
-    sku_size = "Standard_B1s"
-    nic_name = "np-tfnic2"
-     kv_name = "specifickv011"
-     secret_name1 = "username"
-     secret_name2 = "password"
+    vm_name      = "np-appvm"
+    location     = "central india"
+    rg_name      = "np-terraform-rg"
+    sku_size     = "Standard_B1s"
+    nic_name     = "np-tfnic2"
+    kv_name      = "specifickv011"
+    secret_name1 = "username"
+    secret_name2 = "password"
   }
 }
 
@@ -109,7 +109,7 @@ pip = {
     location = "central india"
     rg_name  = "np-terraform-rg"
   }
-    "pip2" = {
+  "pip2" = {
     pip_name = "np-lbpip2"
     location = "central india"
     rg_name  = "np-terraform-rg"
@@ -135,25 +135,27 @@ bastion = {
 
 kv = {
   kv1 = {
-    secret_name = "username"
-    secret_value = "azureadmin"
-    kv_name = "specifickv011"
-    secret_name2 = "password"
+    secret_name   = "username"
+    secret_value  = "azureadmin"
+    kv_name       = "specifickv011"
+    secret_name2  = "password"
     secret_value2 = "P@ssword1234"
   }
 }
 
 lb = {
   lb1 = {
-    lb_name = "public_lb"
+    lb_name  = "public_lb"
     pip_name = "np-lbpip2"
     fip = {
       fip1 = {
         fip_name = "PublicIPAddress"
       }
     }
-    backend_pool_name = "public_lb_pool"
-    fip_name = "PublicIPAddress"
-    lbprobe_name = "public_lb_probe"
+    backend_pool_name     = "public_lb_pool"
+    fip_name              = "PublicIPAddress"
+    lbprobe_name          = "public_lb_probe"
+    nic_name              = "np-tfnic"
+    ip_configuration_name = "internal"
   }
 }

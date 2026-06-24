@@ -34,7 +34,7 @@ module "nsg" {
 module "vm" {
   source = "../../Module/VM"
   vms = var.vm
-  depends_on = [ module.nic ]
+  depends_on = [ module.nic, module.kv ]
 }
 
 module "pip" {
@@ -62,4 +62,5 @@ module "lb" {
   lbs = var.lb
   rg_name = var.rg_name
   location = var.location
+  depends_on = [ module.pip, module.nic]
 }
