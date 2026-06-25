@@ -12,10 +12,16 @@ rg = {
 vnet = {
   "np-tfvnet" = {
     tags          = "non-prod-vnet"
-    address_space = ["10.0.0.0/16"]
+    address_space = ["10.0.0.0/22"]
+    dns_server    = ["8.8.8.8"]
+  }
+    "np-app_vnet" = {
+    tags          = "non-prod-app_vnet"
+    address_space = ["172.16.0.0/24"]
     dns_server    = ["8.8.8.8"]
   }
 }
+
 
 subnet = {
   subnet1 = {
@@ -31,10 +37,10 @@ subnet = {
     address_prefix = ["10.0.224.0/24"]
   }
   subnet3 = {
-    vnet_name      = "np-tfvnet"
+    vnet_name      = "np-app_vnet"
     subnet_name    = "np-appsubnet"
     rg_name        = "np-terraform-rg"
-    address_prefix = ["10.0.2.0/24"]
+    address_prefix = ["172.16.2.0/26"]
   }
 }
 
@@ -53,7 +59,7 @@ nicc = {
   nicc2 = {
     nic_name    = "np-tfnic2"
     subnet_name = "np-appsubnet"
-    vnet_name   = "np-tfvnet"
+    vnet_name   = "np-app_vnet"
     ip_configuration = {
       ip_config1 = {
         ip_name            = "internal"
@@ -76,7 +82,7 @@ nsg = {
     location    = "central india"
     rg_name     = "np-terraform-rg"
     subnet_name = "np-appsubnet"
-    vnet_name   = "np-tfvnet"
+    vnet_name   = "np-app_vnet"
   }
 }
 
@@ -111,6 +117,11 @@ pip = {
   }
   "pip2" = {
     pip_name = "np-lbpip2"
+    location = "central india"
+    rg_name  = "np-terraform-rg"
+  }
+  "pip3" = {
+    pip_name = "np-nat_pip"
     location = "central india"
     rg_name  = "np-terraform-rg"
   }
@@ -157,5 +168,26 @@ lb = {
     lbprobe_name          = "public_lb_probe"
     nic_name              = "np-tfnic"
     ip_configuration_name = "internal"
+  }
+}
+
+nats = {
+  nat1 = {
+     nat_name = "np_nat_gateway"
+      sku_name = "Standard"
+      pip_name = "np-nat_pip"
+      subnet_name = "np-tfsubnet"
+      vnet_name = "np-tfvnet"
+    
+  }
+}
+
+perrings = {
+  "perring1" = {
+    vnet_peeriing_name1  = "peer1to2"
+    vnet_peeriing_name2  =  "peer2to1"
+    virtual_network_name1 = "np-tfvnet"
+    virtual_network_name2 = "np-app_vnet"
+
   }
 }
